@@ -1,45 +1,45 @@
 const express = require('express');
 const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+// const multer = require('multer');
+// const path = require('path');
+// const fs = require('fs');
 // const { Video } = require("../models");
 const Video = require("../models/Video");
 // require('dotenv').config();
+const {upload} = require("../modules/videoProcessing")
 
+// // Ensure the videos directory exists
+// const uploadPath = process.env.PATH_VIDEOS;
+// console.log(`uploadPath: ${uploadPath}`)
+// if (!fs.existsSync(uploadPath)) {
+//   console.log(`is video path set?`)
+//   fs.mkdirSync(uploadPath, { recursive: true });
+// } else {
+//   console.log(`video is NOT set`)
+// }
 
-// Ensure the videos directory exists
-const uploadPath = process.env.PATH_VIDEOS;
-console.log(`uploadPath: ${uploadPath}`)
-if (!fs.existsSync(uploadPath)) {
-  console.log(`is video path set?`)
-  fs.mkdirSync(uploadPath, { recursive: true });
-} else {
-  console.log(`video is NOT set`)
-}
+// // Configure multer storage
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, uploadPath);
+//   },
+//   filename: (req, file, cb) => {
+//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+//     cb(null, uniqueSuffix + path.extname(file.originalname));
+//   }
+// });
 
-// Configure multer storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadPath);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = ['video/mp4', 'video/quicktime']; // quicktime for .mov
-    if (!allowedTypes.includes(file.mimetype)) {
-      return cb(new Error('Invalid file type. Only .mp4 and .mov are allowed.'));
-    }
-    cb(null, true);
-  }
-});
+// const upload = multer({
+//   storage: storage,
+//   fileFilter: (req, file, cb) => {
+//     const allowedTypes = ['video/mp4', 'video/quicktime']; // quicktime for .mov
+//     if (!allowedTypes.includes(file.mimetype)) {
+//       return cb(new Error('Invalid file type. Only .mp4 and .mov are allowed.'));
+//     }
+//     cb(null, true);
+//   }
+// });
 
 // Endpoint to handle video upload
 router.post(
