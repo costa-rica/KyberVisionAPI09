@@ -99,9 +99,7 @@ router.get("/", async (req, res) => {
 
   try {
     // Fetch all videos from the database
-    const videos = await Video.findAll({
-      attributes: ["Match_ID", "Filename", "URL"], // Select only these columns
-    });
+    const videos = await Video.findAll();
 
     res.json({ result: true, videos });
   } catch (error) {
