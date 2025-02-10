@@ -2,37 +2,36 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("./_connection");
 
-const User = sequelize.define(
-  "User",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    Login: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    Password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    EmailAddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    Created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    Last_Access_Date: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-  });
+const User = sequelize.define("User", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  created: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
+  lastAccessDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    field: "last_access_date",
+  },
+});
 
-module.exports = User
+module.exports = User;

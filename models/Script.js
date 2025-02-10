@@ -2,28 +2,27 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("./_connection");
 
-const Script = sequelize.define(
-  "Script",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    Match_ID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    Last_Access_Date: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-  }
-);
+const Script = sequelize.define("Script", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  matchId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: "match_id",
+  },
+  date: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
+  lastAccessDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    field: "last_access_date",
+  },
+});
 
 module.exports = Script;

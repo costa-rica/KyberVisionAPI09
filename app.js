@@ -6,8 +6,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users")
-var actionsRouter = require("./routes/actions")
+var usersRouter = require("./routes/users");
+var actionsRouter = require("./routes/actions");
 var videosRouter = require("./routes/videos");
 var groupsRouter = require("./routes/groups");
 var matchesRouter = require("./routes/matches");
@@ -15,7 +15,7 @@ var playersRouter = require("./routes/players");
 var scriptsRouter = require("./routes/scripts");
 var syncContractsRouter = require("./routes/syncContracts");
 var teamsRouter = require("./routes/teams");
-var adminDbRouter = require("./routes/adminDb")
+var adminDbRouter = require("./routes/adminDb");
 
 var app = express();
 const cors = require("cors");
@@ -43,13 +43,11 @@ app.use("/admin-db", adminDbRouter);
 app.use(express.json({ limit: "6gb" }));
 app.use(express.urlencoded({ limit: "6gb", extended: true }));
 
-
 // Sync database and start server
 sequelize
   .sync()
   .then(() => {
-    console.log("Database connected & synced");
-    // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log("Database connected & synced 🚀");
   })
   .catch((error) => console.error("Error syncing database:", error));
 

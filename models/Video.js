@@ -2,27 +2,25 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("./_connection");
 
-const Video = sequelize.define(
-  "Video",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    Match_ID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    Filename: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    URL: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  }
-);
+const Video = sequelize.define("Video", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  matchId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: "match_id",
+  },
+  filename: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  url: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
 
 module.exports = Video;

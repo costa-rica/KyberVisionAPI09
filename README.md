@@ -1,27 +1,29 @@
 ![Logo](./docs/images/kyberVisionLogo01.png)
 
-# API v0.7.0
+# API v0.8.0
 
 ## Description
 
-Database connection and other logic for the Kyber Vision web and mobile apps. This version is a completly differnt from the Kyber Vision Mobile API06 in that it is based on the git@github.com:Priax/KyberVision.git.
+Database connection and other logic for the Kyber Vision web and mobile apps. This version based on the git@github.com:Priax/KyberVision.git.
 
 - database reconstructed to resemble the database schema from KV2-BDD-2025-01-22 - BDD.drawio.png
 
-## Key changes from API v0.6.0
+## Key changes from API v0.7.0
 
-- Database modified
+- /Register route body key name modified
 - Based on the KyberVision /backend from: git@github.com:Priax/KyberVision.git
-- No sets route for the KV uploader -> KV uploader now changed to KV API07 Manager.
+- User Schema property names changed
+- property naming convention camelCase
+- adding field property for the SQL naming convention.
 
 ## .env
 
 ```
-APP_NAME=KyberVisionAPI07
+APP_NAME=KyberVisionAPI08
 JWT_SECRET=<your_code_here>
 PORT=<your_port_here>
-PATH_DATABASE=/home/dashanddata_user/databases/KyberVisionAPI07/
-PATH_VIDEOS=/home/dashanddata_user/project_resources/KyberVisionAPI07/match_videos
+PATH_DATABASE=/home/dashanddata_user/databases/KyberVisionAPI08/
+PATH_VIDEOS=/home/dashanddata_user/project_resources/KyberVisionAPI08/match_videos
 ```
 
 - APP_NAME, PATH_DATABASE and PATH_VIDEOS can by anything this is just what is on the dev server.
@@ -35,16 +37,6 @@ PATH_VIDEOS=/home/dashanddata_user/project_resources/KyberVisionAPI07/match_vide
 - /users
 - /videos
 - /scripts
-
-## Environmental Variables
-
-.env
-
-```env
-APP_NAME=KyberVisionMobileAPI07
-DB_CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster0.8puct.mongodb.net/kyber_vision_07
-PROJECT_RESOURCES=/Users/nick/Documents/_project_resources/kyber-vision-07
-```
 
 ## Test request to upload video
 
