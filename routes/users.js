@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
@@ -18,9 +18,16 @@ router.post(
     if (!Login || !Password || !EmailAddress) {
       return res.status(400).json({ error: "Tous les champs sont requis." });
     } else {
-      console.log(`Login: ${Login}, ${Password}, ${EmailAddress}`)
+      console.log(`Login: ${Login}, ${Password}, ${EmailAddress}`);
     }
-
+    const existing_user = await User.findOne({
+      where: { EmailAddress: EmailAddress },
+    });
+    if (existing_user) {
+      return res
+        .status(400)
+        .json({ result: false, error: "User exists already" });
+    }
     const hashedPassword = await bcrypt.hash(Password, 10);
 
     const user = await User.create({

@@ -4,7 +4,7 @@
 
 ## Description
 
-Serve files and other heavy logic for the Kyber Vision Mobile 07 app.
+Database connection and other logic for the Kyber Vision web and mobile apps. This version is a completly differnt from the Kyber Vision Mobile API06 in that it is based on the git@github.com:Priax/KyberVision.git.
 
 - database reconstructed to resemble the database schema from KV2-BDD-2025-01-22 - BDD.drawio.png
 
@@ -12,15 +12,29 @@ Serve files and other heavy logic for the Kyber Vision Mobile 07 app.
 
 - Database modified
 - Based on the KyberVision /backend from: git@github.com:Priax/KyberVision.git
+- No sets route for the KV uploader -> KV uploader now changed to KV API07 Manager.
+
+## .env
+
+```
+APP_NAME=KyberVisionAPI07
+JWT_SECRET=<your_code_here>
+PORT=<your_port_here>
+PATH_DATABASE=/home/dashanddata_user/databases/KyberVisionAPI07/
+PATH_VIDEOS=/home/dashanddata_user/project_resources/KyberVisionAPI07/match_videos
+```
+
+- APP_NAME, PATH_DATABASE and PATH_VIDEOS can by anything this is just what is on the dev server.
 
 ## Route name changes
+
 - `/matchs` is `/matches`
 
 ### test
+
 - /users
 - /videos
 - /scripts
-
 
 ## Environmental Variables
 

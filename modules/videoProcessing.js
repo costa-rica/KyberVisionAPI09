@@ -1,17 +1,13 @@
 const multer = require("multer");
 const path = require("path");
-const fs = require('fs');
+const fs = require("fs");
 // const Video = require("../models/video");
-const Video = require("../models/Video")
+const Video = require("../models/Video");
 
 // Ensure the videos directory exists
 const uploadPath = process.env.PATH_VIDEOS;
-console.log(`uploadPath: ${uploadPath}`)
 if (!fs.existsSync(uploadPath)) {
-  console.log(`is video path set?`)
   fs.mkdirSync(uploadPath, { recursive: true });
-} else {
-  console.log(`video is NOT set`)
 }
 
 // Configure multer storage
@@ -20,22 +16,23 @@ const storage = multer.diskStorage({
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
+  },
 });
 
 const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    const allowedTypes = ['video/mp4', 'video/quicktime']; // quicktime for .mov
+    const allowedTypes = ["video/mp4", "video/quicktime"]; // quicktime for .mov
     if (!allowedTypes.includes(file.mimetype)) {
-      return cb(new Error('Invalid file type. Only .mp4 and .mov are allowed.'));
+      return cb(
+        new Error("Invalid file type. Only .mp4 and .mov are allowed.")
+      );
     }
     cb(null, true);
-  }
+  },
 });
-
 
 // const upload = multer({
 //   storage: multer.diskStorage({
@@ -77,9 +74,6 @@ const upload = multer({
 //     fileSize: 5 * 1024 * 1024 * 1024, // 5 GB limit
 //   },
 // });
-
-
-
 
 // async function createVideoDocument(
 //   matchId,
