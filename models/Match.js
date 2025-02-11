@@ -1,4 +1,4 @@
-// NR: refactored 2025-02-08
+// // NR: refactored 2025-02-08
 const { DataTypes } = require("sequelize");
 const sequelize = require("./_connection");
 
@@ -10,30 +10,34 @@ const Match = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    League_ID: {
+    leagueId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Team_ID_analyzed: {
+    teamIdAnalyzed: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Team_ID_opponent: {
+    teamIdOpponent: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    Team_ID_Winner: {
+    teamIdWinner: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    MatchDate: {
+    matchDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
-    City: {
+    city: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+  },
+  {
+    tableName: "Match",
+    underscored: false, // Ensures the DB columns use camelCase
   }
 );
 
