@@ -2,6 +2,7 @@ const express = require("express");
 const { authenticateToken } = require("../middleware/auth");
 const router = express.Router();
 const Video = require("../models/Video");
+const Match = require("../models/Match");
 const { upload, deleteVideo } = require("../modules/videoProcessing");
 const path = require("path");
 const fs = require("fs");
@@ -62,12 +63,17 @@ router.post(
   }
 );
 
-// 🔹 Get All Videos (GET /)
+// 🔹 Get All Videos with Match Data (GET /)
 router.get("/", async (req, res) => {
   console.log(`- in GET /api/videos`);
   try {
-    // Fetch all videos from the database
-    const videos = await Video.findAll();
+    // Fetch all videos with their associated match data
+    const videos = await Video.findAll({
+      include: {
+        model: Match,
+        as: "match", // Alias should match the association
+      },
+    });
 
     res.json({ result: true, videos });
   } catch (error) {
@@ -79,6 +85,23 @@ router.get("/", async (req, res) => {
     });
   }
 });
+// // 🔹 Get All Videos (GET /)
+// router.get("/", async (req, res) => {
+//   console.log(`- in GET /api/videos`);
+//   try {
+//     // Fetch all videos from the database
+//     const videos = await Video.findAll();
+
+//     res.json({ result: true, videos });
+//   } catch (error) {
+//     console.error("Error fetching videos:", error);
+//     res.status(500).json({
+//       result: false,
+//       message: "Internal Server Error",
+//       error: error.message,
+//     });
+//   }
+// });
 
 // 🔹 Get Video by ID (GET /:videoId) downloads /shows actual video
 router.get("/:videoId", async (req, res) => {
