@@ -24,6 +24,7 @@ JWT_SECRET=<your_code_here>
 PORT=<your_port_here>
 PATH_DATABASE=/home/dashanddata_user/databases/KyberVisionAPI08/
 PATH_VIDEOS=/home/dashanddata_user/project_resources/KyberVisionAPI08/match_videos
+NAME_DB=kv08.db
 ```
 
 - APP_NAME, PATH_DATABASE and PATH_VIDEOS can by anything this is just what is on the dev server.
@@ -79,15 +80,49 @@ sudo apt install ffmpeg
 ├── app.js
 ├── bin
 │   └── www
+├── docs
+│   ├── Routes.md
+│   └── images
+├── middleware
+│   └── auth.js
+├── models
+│   ├── Action.js
+│   ├── CompetitionContract.js
+│   ├── Complex.js
+│   ├── GroupContract.js
+│   ├── League.js
+│   ├── Match.js
+│   ├── OpponentServeTimestamp.js
+│   ├── Player.js
+│   ├── PlayerContract.js
+│   ├── Point.js
+│   ├── Script.js
+│   ├── SyncContract.js
+│   ├── Team.js
+│   ├── User.js
+│   ├── Video.js
+│   └── _connection.js
+├── modules
+│   ├── common.js
+│   ├── match.js
+│   ├── userAuthentication.js
+│   └── videoProcessing.js
 ├── node_modules
 ├── package.json
 ├── public
 │   ├── images
 │   ├── index.html
-│   ├── javascripts
 │   └── stylesheets
 ├── routes
+│   ├── actions.js
+│   ├── adminDb.js
+│   ├── groups.js
 │   ├── index.js
+│   ├── matches.js
+│   ├── players.js
+│   ├── scripts.js
+│   ├── syncContracts.js
+│   ├── teams.js
 │   ├── users.js
 │   └── videos.js
 ├── server.js

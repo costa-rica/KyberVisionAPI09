@@ -1,36 +1,31 @@
-const Match = require("../models/match");
+const Match = require("../models/Match");
 
-async function createMatchDocument(
-  leagueId,
-  teamIdAnalyzed,
-  teamIdOpponent,
-  dateOfMatch
-) {
-  const existingMatchDocument = await Match.findOne({
-    leagueId,
-    teamIdAnalyzed,
-    teamIdOpponent,
-    dateOfMatch,
-  });
-
-  if (existingMatchDocument) {
-    console.log("match already created");
-    console.log(`existingMatchDocument._id: ${existingMatchDocument._id}`);
-    return existingMatchDocument._id;
+const createMatch = async (matchData) => {
+  try {
+    const match = await Match.create(matchData);
+    return { success: true, match };
+  } catch (error) {
+    console.error("Error creating match:", error);
+    return { success: false, error: error.message };
   }
+};
 
-  const newMatch = new Match({
-    leagueId,
-    teamIdAnalyzed,
-    teamIdOpponent,
-    dateOfMatch,
-  });
-  await newMatch.save();
-  console.log("match  created");
-  console.log(`newMatch._id: ${newMatch._id}`);
-  return newMatch._id;
-}
+const deleteMatch = async (matchId) => {
+  try {
+    const match = await Match.findByPk(matchId);
+    if (!match) {
+      return { success: false, error: "Match not found" };
+    }
+
+    await match.destroy();
+    return { success: true, message: "Match deleted successfully" };
+  } catch (error) {
+    console.error("Error deleting match:", error);
+    return { success: false, error: error.message };
+  }
+};
 
 module.exports = {
-  createMatchDocument,
+  createMatch,
+  deleteMatch,
 };
