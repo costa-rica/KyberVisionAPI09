@@ -1,25 +1,21 @@
 ![Logo](./docs/images/kyberVisionLogo01.png)
 
-# API v0.8.0
+# API v0.9.0
 
 ## Description
 
-Database connection and other logic for the Kyber Vision web and mobile apps. This version based on the git@github.com:Priax/KyberVision.git.
-
+- Currently the Development API
+- Database connection and other logic for the Kyber Vision web and mobile apps. This version based on the git@github.com:Priax/KyberVision.git.
 - database reconstructed to resemble the database schema from KV2-BDD-2025-01-22 - BDD.drawio.png
 
-## Key changes from API v0.7.0
+## Key changes from API v0.8.0
 
-- /Register route body key name modified
-- Based on the KyberVision /backend from: git@github.com:Priax/KyberVision.git
-- User Schema property names changed
-- property naming convention camelCase
-- adding field property for the SQL naming convention.
+???
 
 ## .env
 
 ```
-APP_NAME=KyberVisionAPI08
+APP_NAME=KyberVisionAPI09
 JWT_SECRET=<your_code_here>
 PORT=<your_port_here>
 PATH_DATABASE=/home/dashanddata_user/databases/KyberVisionAPI08/
